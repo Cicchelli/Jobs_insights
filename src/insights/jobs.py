@@ -13,7 +13,8 @@ class ProcessJobs:
         return self.jobs_list
 
     def get_unique_job_types(self) -> List[str]:
-        pass
+        job_types = set(job["job_type"] for job in self.jobs_list)
+        return list(job_types)
 
     def filter_by_multiple_criteria(self) -> List[dict]:
         pass
