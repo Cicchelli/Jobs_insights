@@ -1,3 +1,4 @@
+from os import path
 from typing import Union, List, Dict
 from src.insights.jobs import ProcessJobs
 
@@ -7,8 +8,22 @@ class ProcessSalaries(ProcessJobs):
         super().__init__()
 
     def get_max_salary(self) -> int:
-        pass
-
+        if not self.jobs_list:
+            self.read(path) 
+            
+        max_salary_list = [
+            int(job["max_salary"])
+            for job in self.jobs_list
+            if job.get("max_salary") and job["max_salary"].isdigit()
+        ]
+        
+        if not max_salary_list:
+            raise ValueError("Nenhum salário máximo válido encontrado.")
+        
+        max_salary = max(max_salary_list)
+        print(max_salary)
+        return max_salary
+    
     def get_min_salary(self) -> int:
         pass
 
