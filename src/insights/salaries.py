@@ -47,11 +47,11 @@ class ProcessSalaries(ProcessJobs):
 
             if min_salary > max_salary:
                 raise ValueError(
-                    "O valor de min_salary deve ser menor ou igual ao de max_salary.")
+                    "Min_salary deve ser menor ou igual a max_salary.")
 
             salary = float(salary)
             return min_salary <= salary <= max_salary
         
         except (ValueError, TypeError, KeyError) as exc:
             raise ValueError(
-                "O valor deve ser um número e a chave não pode estar em branco.") from exc
+                "Deve ser um número e a chave não pode estar vazia.") from exc
