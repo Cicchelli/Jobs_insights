@@ -1,5 +1,5 @@
 from os import path
-from typing import Union, List, Dict
+from typing import Union, Dict
 from src.insights.jobs import ProcessJobs
 
 
@@ -46,10 +46,12 @@ class ProcessSalaries(ProcessJobs):
             max_salary = float(job.get("max_salary", float('-inf')))
 
             if min_salary > max_salary:
-                raise ValueError("O valor de min_salary deve ser menor ou igual ao de max_salary.")
+                raise ValueError(
+                    "O valor de min_salary deve ser menor ou igual ao de max_salary.")
 
             salary = float(salary)
             return min_salary <= salary <= max_salary
         
         except (ValueError, TypeError, KeyError) as exc:
-            raise ValueError("O valor deve ser um número e a chave não pode estar em branco.") from exc
+            raise ValueError(
+                "O valor deve ser um número e a chave não pode estar em branco.") from exc
